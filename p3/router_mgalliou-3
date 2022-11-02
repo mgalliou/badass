@@ -1,7 +1,7 @@
 # configuration to past in vtysh
 ```
 conf t
-hostname router_edhommee-3
+hostname router_mgalliou-3
 no ipv6 forwarding
 !
 interface eth1
