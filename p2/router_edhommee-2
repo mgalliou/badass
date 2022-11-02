@@ -1,0 +1,19 @@
+# create and bring up bridge interface
+ip link add br0 type bridge
+ip link set dev br0 up
+
+# set eth0 ip address
+ip addr add 10.1.1.2/24 dev eth0
+
+# create vxlan interface
+ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.1 local 10.1.1.2 dstport 4789
+
+# set vxlan ip address
+ip addr add 20.1.1.2/24 dev vxlan10
+
+# connect bridge to both eth1 and vxlan10 interfaces
+brctl addif br0 eth1
+brctl addif br0 vxlan10
+
+# bring up vlxan interface
+ip link set dev vxlan10 up
