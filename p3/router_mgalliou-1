@@ -1,35 +1,33 @@
+## configure router as a Route Reflector (RR)
+
 # configuration to past in vtysh
 ```
-conf t
-hostname router_mgalliou-1
-no ipv6 forwarding
-!
+conf terminal
+
+# interfaces
 interface eth0
- ip address 10.1.1.1/30
-!
+ip address 10.1.1.1/30
+
 interface eth1
- ip address 10.1.1.5/30
-!
+ip address 10.1.1.5/30
+
 interface eth2
- ip address 10.1.1.9/30
-!
+ip address 10.1.1.9/30
+
 interface lo
- ip address 1.1.1.1/32
-!
+ip address 1.1.1.1/32
+
+# bgp router
 router bgp 1
- neighbor ibgp peer-group
- neighbor ibgp remote-as 1
- neighbor ibgp update-source lo
- bgp listen range 1.1.1.0/29 peer-group ibgp
- !
- address-family l2vpn evpn
-  neighbor ibgp activate
-  neighbor ibgp route-reflector-client
- exit-address-family
-!
+neighbor ibgp peer-group
+neighbor ibgp remote-as 1
+neighbor ibgp update-source lo
+bgp listen range 1.1.1.0/29 peer-group ibgp
+address-family l2vpn evpn
+neighbor ibgp activate
+neighbor ibgp route-reflector-client
+
+# ospf router
 router ospf
- network 0.0.0.0/0 area 0
-!
-line vty
-!
+network 0.0.0.0/0 area 0
 ```
