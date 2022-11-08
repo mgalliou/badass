@@ -12,5 +12,11 @@ for container in $(docker ps -q); do
 		router_mgalliou-4)
 			docker exec $container bash -c "$(cat router_mgalliou-4)"
 			;;
+		host_mgalliou-1)
+			docker exec $container bash -c "$(cat host_mgalliou-1)"
+			;;
+		host_mgalliou-2)
+			docker exec $container bash -c "$(cat host_mgalliou-2)"
+			;;
 	esac
 done
