@@ -13,10 +13,13 @@ for container in $(docker ps -q); do
 			docker exec $container bash -c "$(cat router_mgalliou-4)"
 			;;
 		host_mgalliou-1)
-			docker exec $container bash -c "$(cat host_mgalliou-1)"
+			docker exec $container sh -c "$(cat host_mgalliou-1)"
 			;;
 		host_mgalliou-2)
-			docker exec $container bash -c "$(cat host_mgalliou-2)"
+			docker exec $container sh -c "$(cat host_mgalliou-2)"
+			;;
+		host_mgalliou-3)
+			docker exec $container sh -c "$(cat host_mgalliou-3)"
 			;;
 	esac
 done
